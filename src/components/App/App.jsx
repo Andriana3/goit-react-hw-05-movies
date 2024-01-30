@@ -1,5 +1,5 @@
 import { lazy } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import { Layout } from 'components';
 
 const Home = lazy(() => import('../../pages/Home/Home'));
@@ -9,6 +9,15 @@ const MovieDetails = lazy(() =>
 );
 const Cast = lazy(() => import('../Cast/Cast'));
 const Reviews = lazy(() => import('../Reviews/Reviews'));
+
+const NotFoundPage = () => {
+  return (
+    <div>
+      <h1>404 - Not Found</h1>
+      <p>Sorry, the page you are looking for might not exist.</p>
+    </div>
+  );
+};
 
 export const App = () => {
   return (
@@ -20,7 +29,11 @@ export const App = () => {
           <Route path="cast" element={<Cast />} />
           <Route path="reviews" element={<Reviews />} />
         </Route>
+        {/* Додайте редірект для невалідних URL */}
+        <Route path="*" element={<Navigate to="/" />} />
       </Route>
+      {/* Додайте сторінку 404 */}
+      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
 };
