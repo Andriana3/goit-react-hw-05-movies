@@ -29,10 +29,8 @@ export const App = () => {
           <Route path="cast" element={<Cast />} />
           <Route path="reviews" element={<Reviews />} />
         </Route>
-        {/* Додайте редірект для невалідних URL */}
         <Route path="*" element={<Navigate to="/" />} />
       </Route>
-      {/* Додайте сторінку 404 */}
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
